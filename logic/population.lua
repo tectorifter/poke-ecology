@@ -26,6 +26,26 @@ return function(mod)
     end
     return false
   end
+  local function transientOnly(line)
+    if type(line) ~= "table" then return false end
+    local nat = nil
+    pcall(function()
+      if type(PE.source) == "table" and type(PE.source.dex) == "function" then
+        local dex = PE.source.dex()
+        if type(dex) == "table" then
+          local d = dex[math.floor(tonumber(line.root) or 0)]
+          if type(d) == "table" then nat = math.floor(tonumber(d.nat) or 0) end
+        end
+      end
+    end)
+    if nat == nil or nat <= 0 then nat = math.floor(tonumber(line.root) or 0) end
+    local set = nil
+    pcall(function()
+      local ov = mod.exports.peOverrides
+      if type(ov) == "table" then set = ov.transientOnly end
+    end)
+    return type(set) == "table" and set[nat] == true
+  end
   local function ceilMultFor(line)
     local m = 1.0
     pcall(function()
@@ -115,7 +135,7 @@ return function(mod)
     local resCands = {}
     local resW = {}
     for i, line in ipairs(cands) do
-      if not lineHasTag(line, "nocturnal_only") then
+      if not lineHasTag(line, "nocturnal_only") and not transientOnly(line) then
         resCands[#resCands + 1] = line
         resW[#resW + 1] = neutralW[i]
       end
@@ -126,7 +146,7 @@ return function(mod)
       resCands = {}
       resW = {}
       for i, line in ipairs(cands) do
-        if not lineHasTag(line, "nocturnal_only") then
+        if not lineHasTag(line, "nocturnal_only") and not transientOnly(line) then
           resCands[#resCands + 1] = line
           resW[#resW + 1] = weights[i]
         end

@@ -1,6 +1,21 @@
 return function(mod)
   local PE = mod.exports.pokeEcology
   local O = {}
+  local function natOf(id)
+    id = math.floor(tonumber(id) or 0)
+    local nat = nil
+    pcall(function()
+      if type(PE.source) == "table" and type(PE.source.dex) == "function" then
+        local dex = PE.source.dex()
+        if type(dex) == "table" then
+          local d = dex[id]
+          if type(d) == "table" then nat = math.floor(tonumber(d.nat) or 0) end
+        end
+      end
+    end)
+    if nat ~= nil and nat > 0 then return nat end
+    return id
+  end
   local function typeMatch(stage, tname)
     if type(stage) ~= "table" then return false end
     local Types = nil
@@ -125,6 +140,28 @@ return function(mod)
     if target.line_class ~= nil then
       if type(line) ~= "table" or line.class ~= target.line_class then return false end
     end
+    if target.nat ~= nil then
+      local want = {}
+      if type(target.nat) == "table" then
+        for _, n in ipairs(target.nat) do want[math.floor(tonumber(n) or 0)] = true end
+      else
+        want[math.floor(tonumber(target.nat) or 0)] = true
+      end
+      local stages = {}
+      if stage ~= nil then stages = { stage } end
+      if #stages == 0 and type(line) == "table" then
+        for _, b in ipairs(type(line.branches) == "table" and line.branches or {}) do
+          for _, st in ipairs(type(b.stages) == "table" and b.stages or {}) do
+            stages[#stages + 1] = st
+          end
+        end
+      end
+      local hit = false
+      for _, st in ipairs(stages) do
+        if want[natOf(st.species)] then hit = true break end
+      end
+      if not hit then return false end
+    end
     return matchStrength
   end
   function O.rowMatches(row, line, stage, ctx)
@@ -133,7 +170,15 @@ return function(mod)
     ctx = type(ctx) == "table" and ctx or {}
     if w.terrain ~= nil and ctx.terrain ~= w.terrain then return false end
     if w.except_terrain ~= nil and ctx.terrain == w.except_terrain then return false end
-    if w.bucket ~= nil and ctx.bucket ~= w.bucket then return false end
+    if w.bucket ~= nil then
+      if type(w.bucket) == "table" then
+        local hit = false
+        for _, b in ipairs(w.bucket) do
+          if ctx.bucket == b then hit = true break end
+        end
+        if not hit then return false end
+      elseif ctx.bucket ~= w.bucket then return false end
+    end
     if w.weather ~= nil and ctx.weather ~= w.weather then return false end
     if w.biome ~= nil or w.area_tag ~= nil then
       local wants = {}

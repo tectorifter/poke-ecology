@@ -61,6 +61,7 @@ return function(mod)
       if type(m) == "table" and type(m.when) == "table" then
         local w = m.when
         local isStatic = w.terrain ~= nil or w.biome ~= nil or w.area_tag ~= nil or w.bucket ~= nil
+          or w.except_terrain ~= nil or w.except_biome ~= nil or w.except_area_tag ~= nil
         local weatherOnly = w.weather ~= nil and w.terrain == nil
           and w.bucket == nil and w.biome == nil and w.area_tag == nil
         if isStatic and not weatherOnly then rows[#rows + 1] = m end

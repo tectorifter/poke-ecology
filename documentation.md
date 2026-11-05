@@ -25,14 +25,17 @@ water swims, else terrestrial, overrides win), activity (ghost/dark
 nocturnal including Hoothoot, overrides win),
 rarity (catch-rate cutoffs, overrides win), plus an optional per-line
 `ceil` multiplier on the evolution-stage ceiling (the Staryu line's,
-so Starmie can resolve on shore grass).
+so Starmie can resolve on shore grass). `neutralType` forces a line's
+stages typeless for ecology (no type tags, diurnal, terrestrial, no
+type rows fire); `singleMin` overrides one line's single-stage
+ordinal gate; `transientOnly` keeps a line out of the resident pool.
 
 ## Admission and weights
 
 Line gate on final power, single-stage ordinal gate by rarity,
 habitat gate on any passing stage. Candidates come from the
 bucket-neutral score, and residents additionally exclude
-`nocturnal_only` lines, so the resident pool is identical in every
+`nocturnal_only` and `transientOnly` lines, so the resident pool is identical in every
 bucket while bucket bans only reshape transients. Weights multiply habitat fit, BST
 proximity, single-stage ramp, rarity, time affinity and static
 modifier rows. Night and dawn buckets boost dark, ghost, poison
@@ -71,9 +74,13 @@ dragon line scores ~0.4 at ordinal 5, ~2.0 at ordinal 20 in
 caves). Bagon, Dratini, Machop and Makuhita lines carry cave tags
 so the cave rows can reach them, matching their canonical caves.
 A row's `area_tag` accepts one tag or a list,
-`target.except_tag` skips matching lines, and `when` also accepts
-`except_terrain`, `except_biome` and `except_area_tag` (skip if
-any area tag overlaps). A type target matching only one side of
+`target.except_tag` skips matching lines, `target.nat` matches
+national numbers on any stage (one row covers a whole line and its
+forms), `when.bucket` accepts one bucket or a list, and `when` also
+accepts `except_terrain`, `except_biome` and `except_area_tag`
+(skip if any area tag overlaps) — a `when` with only `except_*`
+keys is a build-time static filter, so it confines lines in
+resident and transient scoring alike. A type target matching only one side of
 a dual-typed stage weighs softly: the row's multiplier is
 square-rooted (1.6x becomes ~1.26x, 0.25x becomes 0.5x); pure
 matches count fully. The
@@ -81,6 +88,14 @@ relaxation ladder scales up the absolute line cap and relaxes
 single-stage gates in order; the last resort is the nearest earlier
 area's population for the same terrain. Habitat hard bans are never
 relaxed.
+
+Porygon (137/233/474) and Rotom (479 plus forms) are confined to
+the `mauville` areas (Route 110, Route 117, New Mauville inside and
+out) by `except_area_tag` ban rows, run typeless via `neutralType`
+so no normal/electric/ghost row ever fires for them, and Rotom
+additionally runs `singleMin` 1 plus `transientOnly`: grass-rare by
+day, grass-boosted at night, and an uncommon-weight transient in
+New Mauville in every bucket.
 
 ## Overworld
 

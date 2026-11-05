@@ -50,4 +50,10 @@ return {
   { id = "land_fire", when = { terrain = "land", except_area_tag = { "meadow", "forest", "volcanic", "arid" } }, target = { type = "fire", except_tag = "grass_roamer" }, effect = { mult = 0.25 }, priority = 10 },
   { id = "grass_dragon", when = { terrain = "land", area_tag = { "meadow", "forest" } }, target = { type = "dragon" }, effect = { mult = 0.3 }, priority = 10 },
   { id = "grass_fighting", when = { terrain = "land", area_tag = { "meadow", "forest" } }, target = { type = "fighting" }, effect = { mult = 0.3 }, priority = 10 },
+  { id = "porygon_home_only", when = { except_area_tag = { "mauville" } }, target = { nat = { 137, 233, 474 } }, effect = { ban = true }, priority = 30 },
+  { id = "rotom_home_only", when = { except_area_tag = { "mauville" } }, target = { nat = { 479 } }, effect = { ban = true }, priority = 30 },
+  { id = "rotom_grass_day", when = { terrain = "land", bucket = { "morning", "afternoon" }, area_tag = { "meadow", "forest" } }, target = { nat = { 479 } }, effect = { mult = 0.5 }, priority = 10 },
+  { id = "rotom_grass_night", when = { terrain = "land", bucket = "night", area_tag = { "meadow", "forest" } }, target = { nat = { 479 } }, effect = { mult = 3.0 }, priority = 10 },
+  { id = "rotom_mauville_day", when = { area_tag = { "mauville" }, bucket = { "morning", "afternoon" } }, target = { nat = { 479 } }, effect = { mult = 2.2 }, priority = 10 },
+  { id = "rotom_mauville_night", when = { area_tag = { "mauville" }, bucket = "night" }, target = { nat = { 479 } }, effect = { mult = 6.0 }, priority = 10 },
 }

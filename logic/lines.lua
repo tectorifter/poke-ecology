@@ -103,6 +103,11 @@ return function(mod)
     if bst < 1 then return nil end
     local t1 = math.floor(tonumber(d.t1) or 0)
     local t2 = math.floor(tonumber(d.t2) or t1)
+    local neutral = false
+    if type(overrides) == "table" and type(overrides.neutralType) == "table" then
+      neutral = overrides.neutralType[okey(dex, id)] == true
+    end
+    if neutral then t1, t2 = -1, -1 end
     local tags = tagsFor(t1, t2)
     if type(overrides) == "table" and type(overrides.addTag) == "table" then
       local extra = overrides.addTag[okey(dex, id)]

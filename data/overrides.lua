@@ -135,6 +135,18 @@ return {
     [262] = "nocturnal",
     [337] = "nocturnal",
   },
+  neutralType = {
+    [137] = true,
+    [233] = true,
+    [474] = true,
+    [479] = true,
+  },
+  singleMin = {
+    [479] = 1,
+  },
+  transientOnly = {
+    [479] = true,
+  },
   ceil = {
     [120] = 1.8,
   },

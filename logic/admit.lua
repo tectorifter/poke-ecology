@@ -135,6 +135,13 @@ return function(mod)
       if type(rules) == "table" and type(rules.single_min_ordinal) == "table" then
         minOrd = math.floor(tonumber(rules.single_min_ordinal[line.rarity]) or 1)
       end
+      pcall(function()
+        local ov = mod.exports.peOverrides
+        if type(ov) == "table" and type(ov.singleMin) == "table" then
+          local m = tonumber(ov.singleMin[natOf(line.root)])
+          if m ~= nil and m >= 1 then minOrd = math.floor(m) end
+        end
+      end)
       if type(relax) == "table" and tonumber(relax.single) then
         minOrd = minOrd - math.floor(tonumber(relax.single))
       end
