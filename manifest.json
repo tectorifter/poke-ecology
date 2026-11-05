@@ -1,0 +1,21 @@
+{
+  "id": "poke-ecology",
+  "name": "poke-ecology",
+  "version": "1.0.0",
+  "api": 2,
+  "entry": "main.lua",
+  "games": [
+    "emerald"
+  ],
+  "category": "GAMEPLAY",
+  "priority": 90,
+  "permissions": [
+    "engine_internals"
+  ],
+  "dependencies": [],
+  "optional_dependencies": ["untamed_advanced", "safari-plus"],
+  "description": "Line-first seeded wild encounter ecology: populations built per map, terrain and time bucket from live evolution lines; encounter rolls read a cached slot table.",
+  "experimental": false,
+  "conflicts": [],
+  "incompatible": []
+}

@@ -1,0 +1,16 @@
+return {
+  { o = 1, lo = 2, hi = 3, bst = 200, line_cap = 430 },
+  { o = 2, lo = 2, hi = 3, bst = 215, line_cap = 365 },
+  { o = 3, lo = 3, hi = 4, bst = 230, line_cap = 380 },
+  { o = 5, lo = 4, hi = 6, bst = 260, line_cap = 420 },
+  { o = 7, lo = 5, hi = 8, bst = 307, line_cap = 520 },
+  { o = 8, lo = 6, hi = 9, bst = 330, line_cap = 480 },
+  { o = 12, lo = 9, hi = 14, bst = 400, line_cap = 540 },
+  { o = 16, lo = 13, hi = 19, bst = 470, line_cap = 600 },
+  { o = 20, lo = 17, hi = 24, bst = 540, line_cap = 650 },
+  { o = 24, lo = 22, hi = 30, bst = 600, line_cap = 700 },
+  { o = 26, lo = 26, hi = 36, bst = 660, line_cap = 750 },
+  { o = 30, lo = 32, hi = 48, bst = 730, line_cap = 800 },
+  { o = 33, lo = 38, hi = 65, bst = 790, line_cap = 850 },
+  { o = 35, lo = 45, hi = 90, bst = 860, line_cap = 950 },
+}

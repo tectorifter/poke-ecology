@@ -1,0 +1,17 @@
+return {
+  summary = "Line-first seeded wild encounter ecology for Emerald: every map/terrain/time-bucket population is built from live evolution lines (never hand-listed species), cached as a vanilla-shaped slot table, and read by the encounter roll. New species from other mods are picked up automatically.",
+  author = "tectorifter",
+  tags = { "gen3", "emerald", "encounters", "ecology", "spawns" },
+  differences = {
+    added = {
+      "Wild encounter species and levels come from seeded per-area populations built from the live evolution graph, scored by habitat fit, BST proximity, rarity, time affinity and context rows. Common slots are stable residents; uncommon and rare slots change per time bucket (dawn 0, morning 6, afternoon 13, night 19).",
+      "Weather is an overlay on the cached table: it reweights or bans entries at roll time without rebuilding.",
+      "Works through the encounter.roll hook plus direct wraps of sweet scent, rock smash and fishing rolls and Untamed-Advanced's wildArea (so its overworld sprites spawn ecology species), passing nil results through so safari-plus overworld mode and Untamed-Advanced random-battle gating keep working. Vanilla tables are never rewritten; maps with no vanilla table still spawn nothing.",
+      "Single-stage lines only join populations from ordinal 13/14/16 (common/uncommon/rare, wild bands around level 10+), so early routes are all evolving lines. Legendary lines are excluded by default through the NO LEGENDARIES toggle, including legendaries added by dex-expansion content mods (read live from their species list). Mega-evolved and Gigantamax forms never spawn overworld (filtered from Untamed-Advanced wildArea pops by name, mega-method evolution edge, or provider flags).",
+    },
+    known = {
+      "an unofficial fan mod: Pokemon and all related names and assets are (c) Nintendo / Creatures Inc. / GAME FREAK inc. / The Pokemon Company and this project is not affiliated with or endorsed by them",
+    },
+  },
+  compat = { engine = ">=0.0.0-0 <2.0.0", modApi = 2 },
+}
