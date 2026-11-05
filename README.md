@@ -19,26 +19,32 @@ lives in each patch of grass, at each hour, in each weather.
   Gardevoir country — come back overleveled and the final stages
   walk the same ground. Eevee, Wurmple and Nincada branch like real
   bloodlines.
+  
 - **Power follows the journey.** Each area sits on a progression
   curve measured from the start of the game, and lines are admitted
   only if their strength fits the neighborhood. The first routes
   rustle with the weak and the young; the deep caves and far seas
   belong to monsters. Single-stage loners join late, like they
   should — you've earned the weird ones.
+  
 - **Residents and wanderers.** Common slots are stable locals: same
   seed, same faces, day after day. Uncommon and rare slots drift
   with the time bucket and the date — check the same grass at night,
   check it next week, and something new is passing through.
+  
 - **Weather bends the hunt without rebuilding it.** Rain, sun and
   sand reweight who's out and ban the entries that would never show
   their face in it — all at roll time, instantly.
+  
 - **Land, cave, sand, surf, and rod.** Caves brood apart from open
   grass, sand apart from both, dive apart from surf, and a better
   rod reaches into deeper water. Fish where the strong fish are.
+  
 - **Nine generations, your call.** GEN 1–9 toggles gate the pool by
   national-dex range. Cross-generation lines bend, never break: cut
   gen 2 and Onix still walks, it just never answers to Steelix.
   Toggling rebuilds the population on the next roll.
+  
 - **Legends stay legends.** The NO LEGENDARIES toggle (default on)
   keeps the gods out of the grass. Expansion-dex legendaries from
   content mods honor it too.
@@ -56,21 +62,25 @@ Turn it on and Hoenn breathes on your schedule.
 - **safari-plus** — overworld taps and battle rolls pass through
   cleanly in both orders; each mod only transforms real results and
   calls the next handler first.
+  
+- **Table editors** (emerald-wild-spawns, catch-em-all) — their
+  tables still drive rates, cooldowns, fishing windows and sprites,
+  and anything they add is admitted by the line pipeline. Turn
+  ECOLOGY off for byte-vanilla rolls.
+  
+- **Compatibilities:**
+- 
 - **Untamed-Advanced** — its visible sprites spawn ecology species
   through the shared seam, while roamers, Feebas, outbreaks, chains
-  and repel keep running inside Untamed. Mega and Gigantamax forms
-  never spawn overworld (they'd wear the wrong face) — the rest of
-  the population cycles to fill.
+  and repel keep running inside Untamed.
+  
 - **Wilds of Hoenn** — its visible spawns roll through the same
   wrapped engine call, so they spawn ecology species with zero
   integration code. Bump battles start locked to the shown mon;
   classic step encounters flow through the shared roll. Roaming
   legendaries pass through untouched — swapping one would make it
   vanish on touch instead of fighting you.
-- **Table editors** (emerald-wild-spawns, catch-em-all) — their
-  tables still drive rates, cooldowns, fishing windows and sprites,
-  and anything they add is admitted by the line pipeline. Turn
-  ECOLOGY off for byte-vanilla rolls.
+
 - **Dex expansions** (national_dex_gen3) — new species are found by
   the id scan with no changes here (slots to 4096 plus 9000–11000,
   rescanned on save load). Fairy stays inert — gen 3 has no fairy
